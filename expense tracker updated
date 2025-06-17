@@ -1,0 +1,62 @@
+# expense_tracker.py
+
+def show_menu():
+    print("\n=== Expense Tracker Menu ===")
+    print("1. Add Expense")
+    print("2. View Expenses by Category")
+    print("3. View Totals")
+    print("4. Exit")
+
+# Dictionary to hold categories and their expenses
+expenses = {
+    # Example: "Food": [("Burger King", 89.99)]
+}
+
+# Main loop
+while True:
+    show_menu()
+    choice = input("Choose an option (1-4): ")
+
+    if choice == "1":
+        category = input("Enter category (e.g. Food, Transport): ").capitalize()
+        name = input("Enter expense name (e.g. Groceries): ")
+        try:
+            amount = float(input("Enter amount spent: "))
+        except ValueError:
+            print("Invalid amount. Please enter a number.")
+            continue
+
+        if category not in expenses:
+            expenses[category] = []
+
+        expenses[category].append((name, amount))
+        print(f"{name} added under {category} for R{amount:.2f}")
+
+    elif choice == "2":
+        if not expenses:
+            print("No expenses recorded yet.")
+        else:
+            print("\n--- Expenses by Category ---")
+            for category, entries in expenses.items():
+                print(f"\n{category.upper()}")
+                for name, amount in entries:
+                    print(f"  {name}: R{amount:.2f}")
+
+    elif choice == "3":
+        if not expenses:
+            print("No expenses to total.")
+        else:
+            print("\n--- Totals ---")
+            grand_total = 0
+            for category, entries in expenses.items():
+                cat_total = sum(amount for _, amount in entries)
+                grand_total += cat_total
+                print(f"{category}: R{cat_total:.2f}")
+            print(f"\nTotal Spent: R{grand_total:.2f}")
+
+    elif choice == "4":
+        print("Goodbye! 🧾")
+        break
+
+    else:
+        print("Invalid option. Please choose 1 to 4.")
