@@ -1,0 +1,10 @@
+📘 STUDENT GRADE REPORT
+------------------------
+Momo : 85.0
+Nisa: 100.0
+zaydaan : 99.0
+
+SUMMARY
+Average: 94.67
+Highest: Nisa → 100.0
+Lowest: Momo  → 85.0
